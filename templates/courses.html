@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <main id="main">
+
+        {% include 'bread.html' %}
+
+        <section id="portfolio" class="portfolio">
+            <div class="container">
+
+                <div class="section-title" data-aos="fade-left">
+                    <h2>Courses</h2>
+                </div>
+
+                <div class="row" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-lg-12 d-flex justify-content-center">
+                        <ul id="portfolio-flters">
+                            <li data-filter="*" class="filter-active">All</li>
+
+                            {% for type in types %}
+                                <li data-filter=".filter-{{ type.title }}">{{ type.title }}</li>
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
+                    {% for c in courses %}
+                        <div class="col-lg-4 col-md-6 portfolio-item filter-{{ c.type }}">
+                            <div class="portfolio-wrap">
+                                <img src="{{ MEDIA_URL }}{{ c.image }}" class="img-fluid" alt="{{ c.name }} Image"
+                                     style="height: 250px; width: 100%">
+                                <div class="portfolio-info">
+                                    <h4>{{ c.name }}</h4>
+                                    <p>{{ c.duration }} Months</p>
+                                    <div class="portfolio-links">
+                                        <a href="{{ MEDIA_URL }}{{ c.image }}"
+                                           data-gallery="portfolioGallery"
+                                           class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
+                                        <a href="{% url 'single_course' id=c.id %}" title="More Details">
+                                            <i class="bx bx-link"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+            </div>
+        </section><!-- End Portfolio Section -->
+
+
+        <section class="inner-page">
+            <div class="container">
+
+                <div class="row">
+
+                    {% for c in courses %}
+                        <div class="col-lg-4 col-md-6" style="margin: 10px 0;">
+
+                            <div class="card" style="width: 18rem;">
+                                <img src="{{ MEDIA_URL }}{{ c.image }}" class="card-img-top"
+                                     alt="{{ c.name }}" style="height: 250px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ c.name }}</h5>
+                                    <p class="card-text">{{ c.details }}</p>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">{{ c.duration }} Months</li>
+                                    <li class="list-group-item">Rs. {{ c.fee }}</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Course</th>
+                        <th>Duration</th>
+                        <th>Fee</th>
+                        <th>Details</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    {% for c in courses %}
+
+                        <tr>
+                            <td>{{ c.name }}</td>
+                            <td>{{ c.duration }}</td>
+                            <td>{{ c.fee }}</td>
+                            <td>{{ c.details }}</td>
+                        </tr>
+
+                    {% endfor %}
+
+
+                    </tbody>
+                </table>
+
+
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mx-auto">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+
+                            <div class="form-group" style="margin-top: 10px;">
+                                <input type="submit" class="btn btn-primary" value="Submit">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main><!-- End #main -->
+
+{% endblock %}

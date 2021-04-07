@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <main id="main">
+
+        {% include 'bread.html' %}
+
+        {% if messages %}
+            <div class="container">
+                {% for m in messages %}
+                    <div class="alert alert-{{ m.tags }}">
+                        {{ m }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <section class="inner-page">
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <h3 class="text-center">User Login</h3>
+                    </div>
+
+
+                    <div class="col-lg-4 col-md-6 col-sm-12 mx-auto">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="un">
+                            </div>
+                            <div class="form-group" style="margin: 20px auto;">
+                                <input type="password" class="form-control" name="pw">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary" value="Login">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main><!-- End #main -->
+
+{% endblock %}
+

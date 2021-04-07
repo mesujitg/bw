@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <main id="main">
+
+        {% include 'bread.html' %}
+
+        <section class="inner-page">
+            <div class="container">
+
+                {% for a in about %}
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img src="{{ MEDIA_URL }}{{ a.image }}" alt=""
+                                 style="height: 300px; width: 100%;"/>
+                        </div>
+
+                        <div class="col-sm-8">
+                            <h3>{{ a.title }}</h3>
+
+                            <p>
+                                {{ a.details|safe }}
+                            </p>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+
+            </div>
+        </section>
+
+    </main><!-- End #main -->
+
+{% endblock %}

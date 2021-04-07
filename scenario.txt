@@ -1,0 +1,36 @@
+BroadWay
+--------
+about
+- title
+- details
+- image
+
+contacts
+- title
+- details
+
+courses
+- name
+- duration
+- detail
+- fee
+
+staffs
+- name
+- address
+- phone
+- email
+
+students
+- name
+- address
+- phone
+- email
+
+course_student
+- course_id
+- student_id
+
+course_teacher
+- course_id
+- teacher_id

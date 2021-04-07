@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <main id="main">
+
+        {% include 'bread.html' %}
+
+        <section class="inner-page">
+            <div class="container">
+                <div class="row">
+                    {% for c in contacts %}
+
+                        <div class="col-md-3">
+                            <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                                <div class="card-header">{{ c.title }}</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ c.details }}</h5>
+{#                                    <p class="card-text">{{ c.details }}</p>#}
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+    </main><!-- End #main -->
+
+{% endblock %}
